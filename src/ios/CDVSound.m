@@ -338,7 +338,7 @@
                 if (avPlayer) {
                     CMTime time = [avPlayer currentTime];
                     position = CMTimeGetSeconds(time);
-                    
+                    NSLog(@"Playing stream with AVPlayer");
                     [avPlayer play];
                 } else {
 
