@@ -233,6 +233,13 @@
             // Subscribe to the AVPlayerItem's DidPlayToEndTime notification.
             [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:playerItem];
 
+            // Subscribe to the AVPlayerItem's PlaybackStalledNotification notification.
+            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemStalledPlaying:) name:AVPlayerItemPlaybackStalledNotification object:playerItem];
+
+            //watch for buffer empty and buffer full again
+            [playerItem addObserver:self forKeyPath:@"playbackBufferEmpty" options:NSKeyValueObservingOptionNew context:nil];
+            [playerItem addObserver:self forKeyPath:@"playbackLikelyToKeepUp" options:NSKeyValueObservingOptionNew context:nil];
+
             // Pass the AVPlayerItem to a new player
             avPlayer = [[AVPlayer alloc] initWithPlayerItem:playerItem];
 
@@ -243,6 +250,24 @@
 
         CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object
+                        change:(NSDictionary *)change context:(void *)context {
+    if (!avPlayer){
+        return;
+    }
+
+    else if (object == playerItem && [keyPath isEqualToString:@"playbackBufferEmpty"]){
+        if (playerItem.playbackBufferEmpty) {
+            NSLog(@"buffer empty!!");
+        }
+    }
+    else if (object == playerItem && [keyPath isEqualToString:@"playbackLikelyToKeepUp"]){
+        if (playerItem.playbackLikelyToKeepUp) {
+            NSLog(@"buffer full again!!");
+        }
     }
 }
 
@@ -752,6 +777,11 @@
     NSString* jsString = nil;
     jsString = [NSString stringWithFormat:@"%@(\"%@\",%d,%d);", @"cordova.require('cordova-plugin-media.Media').onStatus", mediaId, MEDIA_STATE, MEDIA_STOPPED];
     [self.commandDelegate evalJs:jsString];
+}
+
+-(void)itemStalledPlaying:(NSNotification *) notification {
+    // Will be called when playback stalls due to buffer empty
+    NSLog(@"Stalled playback");
 }
 
 - (void)onMemoryWarning
