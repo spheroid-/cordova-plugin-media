@@ -546,8 +546,12 @@
             if (audioFile.recorder && [audioFile.recorder isRecording]) {
                 [audioFile.recorder stop];
             }
-            if (avPlayer != nil) {
+            if (avPlayer) {
+                BOOL isPlaying = (avPlayer.rate > 0 && !avPlayer.error);
+                
+                if (isPlaying){
                 [avPlayer pause];
+                }
             }
 
             if (self.avSession) {
