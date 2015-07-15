@@ -215,6 +215,7 @@
 
 - (void)create:(CDVInvokedUrlCommand*)command
 {
+    [self.commandDelegate runInBackground:^{
     NSString* mediaId = [command argumentAtIndex:0];
     NSString* resourcePath = [command argumentAtIndex:1];
 
@@ -244,6 +245,7 @@
         CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     }
+    }];
 }
 
 - (void)setVolume:(CDVInvokedUrlCommand*)command
