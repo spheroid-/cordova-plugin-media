@@ -548,7 +548,6 @@
             }
             if (avPlayer != nil) {
                 [avPlayer pause];
-                [avPlayer release];
             }
 
             if (self.avSession) {
