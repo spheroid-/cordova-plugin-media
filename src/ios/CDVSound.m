@@ -523,9 +523,7 @@
 
         } else if (avPlayer != nil) {
             int32_t timeScale = avPlayer.currentItem.asset.duration.timescale;
-            CMTime timeToSeek = CMTimeMakeWithSeconds(posInSeconds, timeScale);
-            // update info on the lock screen
-            
+            CMTime timeToSeek = CMTimeMakeWithSeconds(posInSeconds, timeScale);            
            
             BOOL isPlaying = (avPlayer.rate > 0 && !avPlayer.error);
             
@@ -550,6 +548,9 @@
         if (audioFile != nil) {
             if (audioFile.player && [audioFile.player isPlaying]) {
                 [audioFile.player stop];
+            }
+            if (avPlayer && (avPlayer.rate > 0)) {
+                [avPlayer stop];
             }
             if (audioFile.recorder && [audioFile.recorder isRecording]) {
                 [audioFile.recorder stop];
