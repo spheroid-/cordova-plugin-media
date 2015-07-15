@@ -547,14 +547,13 @@
             if (audioFile.recorder && [audioFile.recorder isRecording]) {
                 [audioFile.recorder stop];
             }
-            if (avPlayer && (avPlayer.rate > 0)) {
-                NSLog(@"avplayer exists, pause.  Rate is %f", avPlayer.rate);
-                [avPlayer pause];
-            }
-
             if (self.avSession) {
+                if(avPlayer && (avPlayer.rate > 0)){
+                self.avSession = nil;
+                } else {
                 [self.avSession setActive:NO error:nil];
                 self.avSession = nil;
+                }
             }
             [[self soundCache] removeObjectForKey:mediaId];
             NSLog(@"Media with id %@ released", mediaId);
