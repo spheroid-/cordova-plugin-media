@@ -722,7 +722,7 @@
 {
     //commented as unused
     //CDVAudioPlayer* aPlayer = (CDVAudioPlayer*)player;
-    NSString* mediaId = aPlayer.mediaId;
+    NSString* mediaId = self.currMediaId;
     CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
     NSString* jsString = nil;
 
