@@ -215,7 +215,6 @@
 
 - (void)create:(CDVInvokedUrlCommand*)command
 {
-    [self.commandDelegate runInBackground:^{
     NSString* mediaId = [command argumentAtIndex:0];
     NSString* resourcePath = [command argumentAtIndex:1];
 
@@ -245,7 +244,6 @@
         CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
     }
-    }];
 }
 
 - (void)setVolume:(CDVInvokedUrlCommand*)command
@@ -451,7 +449,6 @@
 
 - (void)stopPlayingAudio:(CDVInvokedUrlCommand*)command
 {
-    [self.commandDelegate runInBackground:^{
     NSString* mediaId = [command argumentAtIndex:0];
     CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
     NSString* jsString = nil;
@@ -465,12 +462,10 @@
     if (jsString) {
         [self.commandDelegate evalJs:jsString];
     }
-    }];
 }
 
 - (void)pausePlayingAudio:(CDVInvokedUrlCommand*)command
 {
-    [self.commandDelegate runInBackground:^{
     NSString* mediaId = [command argumentAtIndex:0];
     NSString* jsString = nil;
     CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
@@ -490,7 +485,6 @@
     if (jsString) {
         [self.commandDelegate evalJs:jsString];
     }
-    }];
 }
 
 - (void)seekToAudio:(CDVInvokedUrlCommand*)command
