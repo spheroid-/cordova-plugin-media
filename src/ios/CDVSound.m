@@ -499,9 +499,9 @@
     CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
     double position = [[command argumentAtIndex:1] doubleValue];
     double posInSeconds = position / 1000;
+    NSString* jsString;
 
     if ((audioFile != nil) && (audioFile.player != nil)) {
-        NSString* jsString;
 
         if (posInSeconds >= audioFile.player.duration) {
             // The seek is past the end of file.  Stop media and reset to beginning instead of seeking past the end.
