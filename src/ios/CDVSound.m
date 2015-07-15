@@ -547,7 +547,7 @@
                 [audioFile.recorder stop];
             }
             if (avPlayer && (avPlayer.rate > 0)) {
-                NSLog(@"avplayer exists, pause.  Rate is %@", avPlayer.rate)
+                NSLog(@"avplayer exists, pause.  Rate is %@", avPlayer.rate);
                 [avPlayer pause];
             }
 
