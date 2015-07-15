@@ -449,6 +449,7 @@
 
 - (void)stopPlayingAudio:(CDVInvokedUrlCommand*)command
 {
+    [self.commandDelegate runInBackground:^{
     NSString* mediaId = [command argumentAtIndex:0];
     CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
     NSString* jsString = nil;
@@ -462,10 +463,12 @@
     if (jsString) {
         [self.commandDelegate evalJs:jsString];
     }
+    }];
 }
 
 - (void)pausePlayingAudio:(CDVInvokedUrlCommand*)command
 {
+    [self.commandDelegate runInBackground:^{
     NSString* mediaId = [command argumentAtIndex:0];
     NSString* jsString = nil;
     CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
@@ -485,6 +488,7 @@
     if (jsString) {
         [self.commandDelegate evalJs:jsString];
     }
+    }];
 }
 
 - (void)seekToAudio:(CDVInvokedUrlCommand*)command
@@ -745,7 +749,6 @@
 
 -(void)itemDidFinishPlaying:(NSNotification *) notification {
     // Will be called when AVPlayer finishes playing playerItem
-    NSLog(@"called DidFinishPlaying Function");
     NSString* mediaId = self.currMediaId;
     NSString* jsString = nil;
     jsString = [NSString stringWithFormat:@"%@(\"%@\",%d,%d);", @"cordova.require('cordova-plugin-media.Media').onStatus", mediaId, MEDIA_STATE, MEDIA_STOPPED];
