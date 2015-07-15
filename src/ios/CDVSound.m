@@ -362,7 +362,7 @@
                     }
 
                     [audioFile.player play];
-                    double position = round(audioFile.player.duration * 1000) / 1000;
+                    //double position = round(audioFile.player.duration * 1000) / 1000;
                 }
 
                 jsString = [NSString stringWithFormat:@"%@(\"%@\",%d,%.3f);\n%@(\"%@\",%d,%d);", @"cordova.require('cordova-plugin-media.Media').onStatus", mediaId, MEDIA_DURATION, position, @"cordova.require('cordova-plugin-media.Media').onStatus", mediaId, MEDIA_STATE, MEDIA_RUNNING];
@@ -498,10 +498,11 @@
 
     CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
     double position = [[command argumentAtIndex:1] doubleValue];
+    double posInSeconds = position / 1000;
 
     if ((audioFile != nil) && (audioFile.player != nil)) {
         NSString* jsString;
-        double posInSeconds = position / 1000;
+
         if (posInSeconds >= audioFile.player.duration) {
             // The seek is past the end of file.  Stop media and reset to beginning instead of seeking past the end.
             [audioFile.player stop];
