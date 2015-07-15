@@ -85,10 +85,13 @@ typedef NSUInteger CDVMediaMsg;
 @interface CDVSound : CDVPlugin <AVAudioPlayerDelegate, AVAudioRecorderDelegate>
 {
     NSMutableDictionary* soundCache;
+    NSString* currMediaId;
     AVAudioSession* avSession;
+    AVPLayer* avPlayer;
 }
 @property (nonatomic, strong) NSMutableDictionary* soundCache;
 @property (nonatomic, strong) AVAudioSession* avSession;
+@property (nonatomic, strong) NSString* currMediaId;
 
 - (void)startPlayingAudio:(CDVInvokedUrlCommand*)command;
 - (void)pausePlayingAudio:(CDVInvokedUrlCommand*)command;
