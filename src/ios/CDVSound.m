@@ -532,7 +532,7 @@
 
         [self.commandDelegate evalJs:jsString];
     }
-}
+
 
 - (void)release:(CDVInvokedUrlCommand*)command
 {
