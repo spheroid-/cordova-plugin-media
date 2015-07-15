@@ -549,9 +549,6 @@
             if (audioFile.player && [audioFile.player isPlaying]) {
                 [audioFile.player stop];
             }
-            if (avPlayer && (avPlayer.rate > 0)) {
-                [avPlayer stop];
-            }
             if (audioFile.recorder && [audioFile.recorder isRecording]) {
                 [audioFile.recorder stop];
             }
