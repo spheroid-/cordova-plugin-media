@@ -547,7 +547,7 @@
                 [audioFile.recorder stop];
             }
             if (self.avSession) {
-                [self.avSession setActive:NO error:nil];
+                //[self.avSession setActive:NO error:nil];
                 self.avSession = nil;
             }
             [[self soundCache] removeObjectForKey:mediaId];
