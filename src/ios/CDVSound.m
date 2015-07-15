@@ -546,12 +546,9 @@
             if (audioFile.recorder && [audioFile.recorder isRecording]) {
                 [audioFile.recorder stop];
             }
-            if (avPlayer) {
-                BOOL isPlaying = (avPlayer.rate > 0 && !avPlayer.error);
-                
-                if (isPlaying){
+            if (avPlayer && (avPlayer.rate > 0)) {
+                NSLog(@"avplayer exists, pause.  Rate is %@", avPlayer.rate)
                 [avPlayer pause];
-                }
             }
 
             if (self.avSession) {
