@@ -546,8 +546,13 @@
             if (audioFile.recorder && [audioFile.recorder isRecording]) {
                 [audioFile.recorder stop];
             }
+            if (avPlayer != nil) {
+                [avPlayer pause];
+                [avPlayer release];
+            }
+
             if (self.avSession) {
-                //[self.avSession setActive:NO error:nil];
+                [self.avSession setActive:NO error:nil];
                 self.avSession = nil;
             }
             [[self soundCache] removeObjectForKey:mediaId];
