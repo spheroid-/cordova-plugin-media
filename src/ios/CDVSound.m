@@ -550,7 +550,7 @@
                 [audioFile.player stop];
             }
             if (avPlayer && (avPlayer.rate > 0)) {
-                [avPlayer stop];
+                [avPlayer pause];
             }
             if (audioFile.recorder && [audioFile.recorder isRecording]) {
                 [audioFile.recorder stop];
