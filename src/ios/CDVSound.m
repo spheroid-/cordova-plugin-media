@@ -757,7 +757,7 @@
 
     if (self.avSession) {
         [self.avSession setActive:NO error:nil];
-        
+    }
     [self.commandDelegate evalJs:jsString];
 }
 
