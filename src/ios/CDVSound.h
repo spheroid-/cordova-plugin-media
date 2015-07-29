@@ -51,8 +51,10 @@ typedef NSUInteger CDVMediaMsg;
 @interface CDVAudioPlayer : AVAudioPlayer
 {
     NSString* mediaId;
+    NSString* mediaId2;
 }
 @property (nonatomic, copy) NSString* mediaId;
+@property (nonatomic, copy) NSString* mediaId2;
 @end
 
 @interface CDVAudioRecorder : AVAudioRecorder

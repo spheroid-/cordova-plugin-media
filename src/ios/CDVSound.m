@@ -544,8 +544,10 @@
 
 - (void)release:(CDVInvokedUrlCommand*)command
 {
-    //NSString* mediaId = [command argumentAtIndex:0];
-    NSString* mediaId = self.currMediaId;
+    //AVAudioPlayer
+    NSString* mediaId = [command argumentAtIndex:0];
+    //AVPlayer
+    NSString* mediaId2 = self.currMediaId;
 
     if (mediaId != nil) {
         CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
@@ -566,6 +568,28 @@
             }
             [[self soundCache] removeObjectForKey:mediaId];
             NSLog(@"Media with id %@ released", mediaId);
+        }
+    }
+
+    if (mediaId2 != nil) {
+        CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId2];
+        if (audioFile != nil) {
+            if (audioFile.player && [audioFile.player isPlaying]) {
+                [audioFile.player stop];
+            }
+            if (audioFile.recorder && [audioFile.recorder isRecording]) {
+                [audioFile.recorder stop];
+            }
+            if (self.avSession) {
+                if(avPlayer && (avPlayer.rate > 0)){
+                self.avSession = nil;
+                } else {
+                [self.avSession setActive:NO error:nil];
+                self.avSession = nil;
+                }
+            }
+            [[self soundCache] removeObjectForKey:mediaId2];
+            NSLog(@"Media with id %@ released", mediaId2);
         }
     }
 }
@@ -811,6 +835,7 @@
 @end
 @implementation CDVAudioPlayer
 @synthesize mediaId;
+@synthesize mediaId2;
 
 @end
 
