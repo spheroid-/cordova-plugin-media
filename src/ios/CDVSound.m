@@ -227,6 +227,9 @@
     } else {
         NSURL* resourceUrl = [[NSURL alloc] initWithString:resourcePath];
         if (![resourceUrl isFileURL]) {
+
+            NSLog(@"RESOURCE PATH VALUE IN CREATE: %@", [err resourcePath])
+
             // First create an AVPlayerItem
             AVPlayerItem* playerItem = [AVPlayerItem playerItemWithURL:resourceUrl];
 
