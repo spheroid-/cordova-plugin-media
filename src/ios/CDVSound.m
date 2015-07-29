@@ -552,10 +552,11 @@
                 [audioFile.recorder stop];
             }
             if (avPlayer.rate > 0 && !avPlayer.error) {
+                            NSLog(@"PAUSE PAUSE PAUSE PAUSE", mediaId);
                 [avPlayer pause];
             }
             if (self.avSession) {
-                if(avPlayer){
+                if(avPlayer != nil){
                 [self.avSession setActive:NO error:nil];
                 self.avSession = nil;
                 } else {
