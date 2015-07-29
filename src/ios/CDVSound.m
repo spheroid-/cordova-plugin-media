@@ -224,7 +224,9 @@
         [self.commandDelegate evalJs:jsString];
     } else {
         NSURL* resourceUrl = [[NSURL alloc] initWithString:resourcePath];
-        if (![resourceUrl isFileURL]) {
+        NSLog(@"resourceUrl: %@", resourceUrl);
+        NSLog(@"resourcePath: %@", resourcePath);
+        if (![resourceUrl isFileURL && ![resourcePath hasPrefix:CDVFILE_PREFIX]]) {
             // First create an AVPlayerItem
             AVPlayerItem* playerItem = [AVPlayerItem playerItemWithURL:resourceUrl];
 
