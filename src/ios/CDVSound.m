@@ -226,6 +226,8 @@
         NSURL* resourceUrl = [[NSURL alloc] initWithString:resourcePath];
         NSLog(@"resourceUrl: %@", resourceUrl);
         NSLog(@"resourcePath: %@", resourcePath);
+        NSString* test = [resourceUrl absoluteString]
+        NSLog(@"absolute string: %@", test);
         if (![resourceUrl isFileURL] && ![resourcePath hasPrefix:CDVFILE_PREFIX]) {
             // First create an AVPlayerItem
             AVPlayerItem* playerItem = [AVPlayerItem playerItemWithURL:resourceUrl];
