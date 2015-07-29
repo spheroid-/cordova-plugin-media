@@ -543,6 +543,7 @@
 
     if (mediaId != nil) {
         CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
+
         if (audioFile != nil) {
             if (audioFile.player && [audioFile.player isPlaying]) {
                 [audioFile.player stop];
@@ -550,8 +551,12 @@
             if (audioFile.recorder && [audioFile.recorder isRecording]) {
                 [audioFile.recorder stop];
             }
+            if (avPlayer.rate > 0 && !avPlayer.error) {
+                [avPlayer pause];
+            }
             if (self.avSession) {
-                if(avPlayer && (avPlayer.rate > 0)){
+                if(avPlayer){
+                [self.avSession setActive:NO error:nil];
                 self.avSession = nil;
                 } else {
                 [self.avSession setActive:NO error:nil];
