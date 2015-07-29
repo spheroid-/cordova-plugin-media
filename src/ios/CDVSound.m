@@ -408,9 +408,9 @@
 
     // create the player
     NSURL* resourceURL = audioFile.resourceURL;
-    NSString* resourcePath = audioFile.resourceURL;
+    NSString* resourcePath = [audioFile.resourceURL absoluteString];
 
-    NSLog(@"RESOURCE URL VALUE IN PREPARE TO PLAY: %@", resourcePath);
+    NSLog(@"RESOURCE PATH VALUE IN PREPARE TO PLAY: %@", resourcePath);
     if ([resourceURL isFileURL]) {
         audioFile.player = [[CDVAudioPlayer alloc] initWithContentsOfURL:resourceURL error:&playerError];
     } else if (![resourcePath hasPrefix:HTTPS_SCHEME_PREFIX] || ![resourcePath hasPrefix:HTTP_SCHEME_PREFIX]) {
