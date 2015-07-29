@@ -242,9 +242,9 @@
             avPlayer = [[AVPlayer alloc] initWithPlayerItem:playerItem];
 
             //avPlayer = [[AVPlayer alloc] initWithURL:resourceUrl];
-        }
 
-        self.currMediaId = mediaId;
+            self.currMediaId = mediaId;
+        }
 
         CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
         [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
@@ -317,7 +317,9 @@
         }
         if (!bError) {
             //self.currMediaId = audioFile.player.mediaId;
+            if([resourcePath hasPrefix:HTTPS_SCHEME_PREFIX] || [resourcePath hasPrefix:HTTP_SCHEME_PREFIX]) {
             self.currMediaId = mediaId;
+            }
 
             // audioFile.player != nil  or player was successfully created
             // get the audioSession and set the category to allow Playing when device is locked or ring/silent switch engaged
@@ -367,7 +369,7 @@
                     }
 
                     [audioFile.player play];
-                    //double position = round(audioFile.player.duration * 1000) / 1000;
+                    position = round(audioFile.player.duration * 1000) / 1000;
                 }
 
                 jsString = [NSString stringWithFormat:@"%@(\"%@\",%d,%.3f);\n%@(\"%@\",%d,%d);", @"cordova.require('cordova-plugin-media.Media').onStatus", mediaId, MEDIA_DURATION, position, @"cordova.require('cordova-plugin-media.Media').onStatus", mediaId, MEDIA_STATE, MEDIA_RUNNING];
