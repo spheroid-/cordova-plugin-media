@@ -538,8 +538,8 @@
 
 - (void)release:(CDVInvokedUrlCommand*)command
 {
-    //NSString* mediaId = [command argumentAtIndex:0];
-    NSString* mediaId = self.currMediaId;
+    NSString* mediaId = [command argumentAtIndex:0];
+    //NSString* mediaId = self.currMediaId;
 
     if (mediaId != nil) {
         CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
@@ -728,8 +728,8 @@
 - (void)audioPlayerDidFinishPlaying:(AVAudioPlayer*)player successfully:(BOOL)flag
 {
     //commented as unused
-    //CDVAudioPlayer* aPlayer = (CDVAudioPlayer*)player;
-    NSString* mediaId = self.currMediaId;
+    CDVAudioPlayer* aPlayer = (CDVAudioPlayer*)player;
+    NSString* mediaId = aPlayer.mediaId;
     CDVAudioFile* audioFile = [[self soundCache] objectForKey:mediaId];
     NSString* jsString = nil;
 
@@ -754,6 +754,10 @@
     NSString* mediaId = self.currMediaId;
     NSString* jsString = nil;
     jsString = [NSString stringWithFormat:@"%@(\"%@\",%d,%d);", @"cordova.require('cordova-plugin-media.Media').onStatus", mediaId, MEDIA_STATE, MEDIA_STOPPED];
+
+    if (self.avSession) {
+        [self.avSession setActive:NO error:nil];
+        
     [self.commandDelegate evalJs:jsString];
 }
 
