@@ -408,10 +408,12 @@
 
     // create the player
     NSURL* resourceURL = audioFile.resourceURL;
-    NSLog(@"RESOURCE URL VALUE IN PREPARE TO PLAY: %@", resourceURL);
+    NSString* resourcePath = [command argumentAtIndex:1];
+
+    NSLog(@"RESOURCE URL VALUE IN PREPARE TO PLAY: %@", resourcePath);
     if ([resourceURL isFileURL]) {
         audioFile.player = [[CDVAudioPlayer alloc] initWithContentsOfURL:resourceURL error:&playerError];
-    } else if (![resourceURL hasPrefix:HTTPS_SCHEME_PREFIX] || ![resourceURL hasPrefix:HTTP_SCHEME_PREFIX]) {
+    } else if (![resourcePath hasPrefix:HTTPS_SCHEME_PREFIX] || ![resourcePath hasPrefix:HTTP_SCHEME_PREFIX]) {
               
         NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:resourceURL];
         NSString* userAgent = [self.commandDelegate userAgent];
