@@ -408,7 +408,7 @@
 
     // create the player
     NSURL* resourceURL = audioFile.resourceURL;
-    NSString* resourcePath = [command argumentAtIndex:1];
+    NSString* resourcePath = audioFile.resourceURL;
 
     NSLog(@"RESOURCE URL VALUE IN PREPARE TO PLAY: %@", resourcePath);
     if ([resourceURL isFileURL]) {
