@@ -322,7 +322,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
     public float getDuration(String file) {
 
         // Check the Duration again (allows js to call multiple times to refresh value after stream starts)
-        this.duration = getDurationInSeconds()
+        this.duration = getDurationInSeconds();
 
         // Can't get duration of recording
         if (this.recorder != null) {
