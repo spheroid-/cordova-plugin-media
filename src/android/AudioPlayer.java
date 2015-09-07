@@ -382,7 +382,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
         float testDuration = 0;
 
         while(testDuration < 1){
-            testDuration = this.player.getDuration()
+            testDuration = this.player.getDuration();
             Log.d(LOG_TAG, "AudioPlayer.getDuration(" + testDuration + ")");
 
             if (testDuration > 1){
