@@ -378,6 +378,10 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
      * @return length of clip in seconds
      */
     private float getDurationInSeconds() {
+
+        this.duration = this.player.getDuration();
+        Log.d(LOG_TAG, "AudioPlayer.getDuration(" + this.duration + ")");
+
         return (this.player.getDuration() / 1000.0f);
     }
 
