@@ -386,7 +386,7 @@ public class AudioPlayer implements OnCompletionListener, OnPreparedListener, On
             Log.d(LOG_TAG, "AudioPlayer.getDuration(" + testDuration + ")");
 
             if (testDuration > 1){
-                (return testDuration / 1000.0f);
+                return (testDuration / 1000.0f);
             }
         }
 
