@@ -43,6 +43,7 @@ module.exports = {
 
         var srcUri = processUri(args[1]);
         console.log("Media Source: "+args[1]);
+        console.log("srcUri: "+srcUri);
 
         var createAudioNode = !!args[2];
         var thisM = Media.get(id);
@@ -53,6 +54,7 @@ module.exports = {
         if (thisM.node === null) {
             if (SUPPORTED_EXTENSIONS.indexOf(extension) === -1) {
                 lose && lose({ code: MediaError.MEDIA_ERR_ABORTED });
+                console.log("Media format not supported: " + extension);
                 return false; // unable to create
             }
 
