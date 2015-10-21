@@ -55,7 +55,7 @@ module.exports = {
 
         var extension = srcUri.extension;
         if (thisM.node === null) {
-            if (SUPPORTED_EXTENSIONS.indexOf(extension) === -1) {
+            if (SUPPORTED_EXTENSIONS.indexOf(extension) === -1 && SUPPORTED_PREFIXES.indexOf(prefix) === -1) {
                 lose && lose({ code: MediaError.MEDIA_ERR_ABORTED });
                 console.log("Media format not supported");
                 return false; // unable to create
