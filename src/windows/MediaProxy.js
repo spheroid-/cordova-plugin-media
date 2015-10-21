@@ -32,6 +32,7 @@ var tempFolderAppDataBasePath = 'ms-appdata:///temp/',
 
 var PARAMETER_IS_INCORRECT = -2147024809;
 var SUPPORTED_EXTENSIONS = ['.mp3', '.wma', '.wav', '.cda', '.adx', '.wm', '.m3u', '.wmx', '.m4a'];
+var SUPPORTED_PREFIXES = ['http', 'https', 'rstp', 'cdvfile'];
 
 module.exports = {
     mediaCaptureMrg:null,
@@ -41,6 +42,7 @@ module.exports = {
         var id = args[0];
 
         var srcUri = processUri(args[1]);
+        console.log("Media Source: "+args[1]);
 
         var createAudioNode = !!args[2];
         var thisM = Media.get(id);
