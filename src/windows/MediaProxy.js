@@ -46,7 +46,7 @@ module.exports = {
         console.log("srcUri: "+srcUri);
 
         var prefix = args[1].split(':').shift();
-        console.log("prefix");
+        console.log(prefix);
 
         var createAudioNode = !!args[2];
         var thisM = Media.get(id);
