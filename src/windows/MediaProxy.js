@@ -32,7 +32,7 @@ var tempFolderAppDataBasePath = 'ms-appdata:///temp/',
 
 var PARAMETER_IS_INCORRECT = -2147024809;
 var SUPPORTED_EXTENSIONS = ['.mp3', '.wma', '.wav', '.cda', '.adx', '.wm', '.m3u', '.wmx', '.m4a'];
-var SUPPORTED_PREFIXES = ['http', 'https', 'rstp', 'cdvfile'];
+var SUPPORTED_PREFIXES = ['http', 'https', 'rstp'];
 
 module.exports = {
     mediaCaptureMrg:null,
