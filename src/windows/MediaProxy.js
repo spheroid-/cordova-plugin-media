@@ -64,7 +64,7 @@ module.exports = {
             // Don't create Audio object in case of record mode
             if (createAudioNode === true) {
                 thisM.node = new Audio();
-                thisM.node.setAttribute("msAudioCategory", "Media");
+                thisM.node.setAttribute("msAudioCategory", "BackgroundCapableMedia");
                 thisM.node.src = srcUri.absoluteCanonicalUri;
                 console.log("AUDIO OBJECT");
                 console.dir(thisM.node);
