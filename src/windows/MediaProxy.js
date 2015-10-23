@@ -64,6 +64,8 @@ module.exports = {
             // Don't create Audio object in case of record mode
             if (createAudioNode === true) {
                 thisM.node = new Audio(srcUri.absoluteCanonicalUri);
+                console.log("AUDIO OBJECT");
+                console.dir(thisM.node);
 
                 thisM.node.onloadstart = function () {
                     Media.onStatus(id, Media.MEDIA_STATE, Media.MEDIA_STARTING);
